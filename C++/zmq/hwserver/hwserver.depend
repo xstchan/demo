@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1466424742 source:/home/stchan/sentian/programs/demo/C++/zmq/hwserver/main.cpp
+	<zmq.hpp>
+	<string>
+	<iostream>
+	<unistd.h>
+	<windows.h>
+

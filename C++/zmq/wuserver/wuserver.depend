@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1466502702 source:/home/stchan/sentian/programs/demo/C++/zmq/wuserver/main.cpp
+	<zmq.hpp>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<zhelpers.hpp>
+

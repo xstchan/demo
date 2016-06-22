@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1466502781 source:/home/stchan/sentian/programs/demo/C++/zmq/wuclient/main.cpp
+	<zmq.hpp>
+	<iostream>
+	<sstream>
+
