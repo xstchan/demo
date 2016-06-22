@@ -15,7 +15,7 @@ int main (int argc, char *argv[])
     int major, minor, patch;
     zmq_version (&major, &minor, &patch);
     std::cout << "当前ZMQ版本号为" << major << "." << minor << "." << patch << std::endl;
-    
+
     zmq::context_t context (1);
 
     //  Socket to talk to server
@@ -24,7 +24,7 @@ int main (int argc, char *argv[])
     subscriber.connect("tcp://localhost:5556");
 
     //  Subscribe to zipcode, default is NYC, 10001
-	const char *filter = (argc > 1)? argv [1]: "10001 ";
+	const char *filter = (argc > 1)? argv [1]: "10001";
     subscriber.setsockopt(ZMQ_SUBSCRIBE, filter, strlen (filter));
 
 
