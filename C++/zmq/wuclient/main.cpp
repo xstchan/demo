@@ -11,6 +11,11 @@
 
 int main (int argc, char *argv[])
 {
+
+    int major, minor, patch;
+    zmq_version (&major, &minor, &patch);
+    std::cout << "当前ZMQ版本号为" << major << "." << minor << "." << patch << std::endl;
+    
     zmq::context_t context (1);
 
     //  Socket to talk to server
@@ -22,23 +27,22 @@ int main (int argc, char *argv[])
 	const char *filter = (argc > 1)? argv [1]: "10001 ";
     subscriber.setsockopt(ZMQ_SUBSCRIBE, filter, strlen (filter));
 
+
     //  Process 100 updates
-    int update_nbr;
-    long total_temp = 0;
-    for (update_nbr = 0; update_nbr < 100; update_nbr++) {
+    while(true) {
+
+        int zipcode = 0; 
+        int temperature = 0;
 
         zmq::message_t update;
-        int zipcode, temperature, relhumidity;
-
         subscriber.recv(&update);
 
         std::istringstream iss(static_cast<char*>(update.data()));
-		iss >> zipcode >> temperature >> relhumidity ;
+		iss >> zipcode >> temperature;
 
-		total_temp += temperature;
+        std::cout   << "Temperature for zipcode '"<< filter
+                    <<"' was "<<(int) (temperature) <<"F"
+                    << std::endl;
     }
-    std::cout 	<< "Average temperature for zipcode '"<< filter
-    			<<"' was "<<(int) (total_temp / update_nbr) <<"F"
-    			<< std::endl;
     return 0;
 }
